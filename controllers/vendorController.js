@@ -57,7 +57,8 @@ const vendorLogin = async(req, res) => {
 const getAllVendors = async(req, res) => {
     try {
         const vendors = await Vendor.find().populate('firm')
-        
+        console.log(vendors)
+        res.setHeader('Access-Control-Allow-Origin', '*')
         res.json({vendors})
     } catch (error) {
         console.log(error)
