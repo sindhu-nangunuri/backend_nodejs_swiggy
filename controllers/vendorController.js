@@ -40,11 +40,11 @@ const vendorLogin = async(req, res) => {
     try {
         const vendor = await Vendor.findOne({email})
         if(!vendor || !(await bcrypt.compare(password, vendor.password))) {
-            return res.status(401).json({eroor: "Invalid username or password"})
+            return res.status(401).json({error: "Invalid username or password"})
         }
 
         const token = jwt.sign({vendorId: vendor._id}, secretKey, {expiresIn: '1hr'})
-        res.status(200).json({sucess: "Login Successful", token})
+        res.status(200).json({success: "Login Successful", token})
         console.log(email, "This is token:", token)
         
     } catch (error) {
@@ -56,7 +56,8 @@ const vendorLogin = async(req, res) => {
 
 const getAllVendors = async(req, res) => {
     try {
-        const vendors = await Vendor.find().populate('firm')
+        const vendors = await Vendor.find().populate('firm') //using populate we will get all the firm details not only Id
+        //const vendors = await Vendor.find() // we will get only vendor details with only firm Id
         console.log(vendors)
         res.setHeader('Access-Control-Allow-Origin', '*')
         res.status(200).json({vendors})

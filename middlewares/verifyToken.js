@@ -15,6 +15,7 @@ const verifyToken = async(req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token, secretKey )
+        console.log(decoded) // _id of vendor is stored in vendorId variable while we did jwt sign
         const vendor = await Vendor.findById(decoded.vendorId)
         if(!vendor) {
             return res.status(404).json({error: "vendor not found"})

@@ -24,7 +24,7 @@ app.use(bodyParser.json()) // used to convert data came from input to json forma
 app.use("/vendor", vendorRoutes) //to create http request
 app.use("/firm", firmRoutes)
 app.use('/product', productRoutes)
-app.use('/uploads', express.static('uploads'))
+app.use('/uploads', express.static('uploads')) //express.static takes a directory path from its arguments, in this case it is uploads folder
 
 app.listen(PORT, () => {
     console.log(`Server started and running at ${PORT}`)
