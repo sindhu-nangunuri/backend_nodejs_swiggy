@@ -1,5 +1,4 @@
 const express = require("express")
-const app = express()
 const dotEnv = require("dotenv")
 const mongoose = require("mongoose") ;
 const vendorRoutes = require('./routes/vendorRoutes')
@@ -9,12 +8,13 @@ const productRoutes = require('./routes/productRoutes')
 const path = require('path')
 const cors = require('cors')
 
+const app = express()
 
-app.use(cors());
 
 const PORT = process.env.PORT || 4000
 
 dotEnv.config() 
+app.use(cors());
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=> console.log("MongoDB connected successfully"))
